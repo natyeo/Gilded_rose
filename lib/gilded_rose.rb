@@ -6,6 +6,10 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
+      # reduce sell_in by 1 for all items except Sulfuras
+      if item.name != "Sulfuras, Hand of Ragnaros"
+        item.sell_in = item.sell_in - 1
+      end
       # reduce quality by 1 for standard items and if quality is more than 0
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
@@ -34,10 +38,6 @@ class GildedRose
           end
         end
       end
-      # reduce sell_in by 1 for all items except Sulfuras
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.sell_in = item.sell_in - 1
-      end
       # if passed sell by date
       if item.sell_in < 0
         if item.name != "Aged Brie"
@@ -52,7 +52,7 @@ class GildedRose
             item.quality = item.quality - item.quality
           end
         else
-          # for aged brie, increase quality 
+          # for aged brie, increase quality by 1
           if item.quality < 50
             item.quality = item.quality + 1
           end
