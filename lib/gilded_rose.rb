@@ -9,9 +9,9 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert"
+      if item.name == "Aged Brie" || item.name.include?("Backstage passes")
         increase_quality_if_below_MAX(item)
-        if item.name == "Backstage passes to a TAFKAL80ETC concert"
+        if item.name.include?("Backstage passes")
           if item.sell_in < 11
             increase_quality_if_below_MAX(item)
           end
@@ -25,7 +25,7 @@ class GildedRose
       if item.sell_in < 0
         if item.name == "Aged Brie"
           item.quality += 1
-        elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+        elsif item.name.include?("Backstage passes")
           item.quality = MIN_QUALITY
         elsif item.name != "Sulfuras, Hand of Ragnaros"
           item.quality -= 1
