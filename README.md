@@ -23,3 +23,5 @@ Feel free to make any changes to the UpdateQuality method and add any new code a
 ## My approach
 
 Chose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) (translated by Emily Bache) in Ruby.
+
+## How to run the program

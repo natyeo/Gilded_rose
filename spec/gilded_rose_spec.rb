@@ -5,7 +5,8 @@ describe GildedRose do
   Item.new("Aged Brie", 10, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 30),
   Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 30),
   Item.new("beans", -2, 4), Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
-  Item.new("Aged Brie", 1, 50), Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 50)]
+  Item.new("Aged Brie", 1, 50), Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 50),
+  Item.new("Conjured", 2, 5), Item.new("Conjured", -1, 5)]
 
   before(:all) do
     gildedrose = GildedRose.new(items)
@@ -73,6 +74,16 @@ describe GildedRose do
 
       it 'does not increase quality above 50' do
         expect(@result[9].quality).to eq 50
+      end
+    end
+
+    context 'for Conjured' do
+      it 'decreases quality by 2' do
+        expect(@result[10].quality).to eq 3
+      end
+
+      it 'decreases quality by 4 when expired' do
+        expect(@result[11].quality).to eq 1
       end
     end
   end
