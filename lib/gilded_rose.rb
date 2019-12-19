@@ -25,9 +25,7 @@ class GildedRose
         item.quality -= 1 unless item.quality == 0
       end
       if item.sell_in < 0
-        if item.name == "Aged Brie"
-          item.quality += 1
-        elsif item.name.include?("Backstage passes")
+        if item.name.include?("Backstage passes")
           item.quality = MIN_QUALITY
         else
           item.quality -= 1
