@@ -13,25 +13,25 @@ class GildedRose
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
+            item.quality -= 1
           end
         end
       # for Aged Brie and Backstage passes
       else
         # for aged brie and backstage pass with more than 10 days to the concert
         if item.quality < 50
-          item.quality = item.quality + 1
+          item.quality += 1
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             # for backstage passes less than 11 days to go increase quality by additional 1
             if item.sell_in < 11
               if item.quality < 50
-                item.quality = item.quality + 1
+                item.quality += 1
               end
             end
             # for backstage passes with less than 6 days to go increase quality by additional 1
             if item.sell_in < 6
               if item.quality < 50
-                item.quality = item.quality + 1
+                item.quality += 1
               end
             end
           end
@@ -39,16 +39,16 @@ class GildedRose
       end
       # if passed sell by date
       if item.sell_in < 0
-        if item.name == "Aged Brie" && item.quality < 50
+        if item.name == "Aged Brie" && item.quality < MAX_QUALITY
           item.quality += 1
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-          item.quality = 0
-        elsif item.name != "Sulfuras, Hand of Ragnaros" && item.quality > 0
+          item.quality = MIN_QUALITY
+        elsif item.name != "Sulfuras, Hand of Ragnaros" && item.quality > MIN_QUALITY
           item.quality -= 1
         end
       end
       # reduce sell_in by 1 for all items except Sulfuras
-      item.sell_in = item.sell_in - 1 unless item.name == "Sulfuras, Hand of Ragnaros"
+      item.sell_in -= 1 unless item.name == "Sulfuras, Hand of Ragnaros"
     end
   end
 end
