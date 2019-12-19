@@ -16,39 +16,38 @@ class GildedRose
             item.quality -= 1
           end
         end
-      # for Aged Brie and Backstage passes
       else
-        # for aged brie and backstage pass with more than 10 days to the concert
-        if item.quality < 50
-          item.quality += 1
+          # for Aged Brie and Backstage passes
+          increase_quality_if_below_MAX(item)
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             # for backstage passes less than 11 days to go increase quality by additional 1
             if item.sell_in < 11
-              if item.quality < 50
-                item.quality += 1
-              end
+              increase_quality_if_below_MAX(item)
             end
             # for backstage passes with less than 6 days to go increase quality by additional 1
             if item.sell_in < 6
-              if item.quality < 50
-                item.quality += 1
-              end
+              increase_quality_if_below_MAX(item)
             end
-          end
         end
       end
       # if passed sell by date
       if item.sell_in < 0
-        if item.name == "Aged Brie" && item.quality < MAX_QUALITY
+        if item.name == "Aged Brie"
           item.quality += 1
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
           item.quality = MIN_QUALITY
-        elsif item.name != "Sulfuras, Hand of Ragnaros" && item.quality > MIN_QUALITY
+        elsif item.name != "Sulfuras, Hand of Ragnaros"
           item.quality -= 1
         end
       end
       # reduce sell_in by 1 for all items except Sulfuras
       item.sell_in -= 1 unless item.name == "Sulfuras, Hand of Ragnaros"
+    end
+  end
+
+  def increase_quality_if_below_MAX(item)
+    if item.quality < MAX_QUALITY
+      item.quality += 1
     end
   end
 end
