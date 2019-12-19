@@ -4,7 +4,8 @@ describe GildedRose do
   items = [Item.new("foo", 0, 1), Item.new("Sulfuras, Hand of Ragnaros", 40, 40),
   Item.new("Aged Brie", 10, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 30),
   Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 30),
-  Item.new("beans", -2, 4), Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 30) ]
+  Item.new("beans", -2, 4), Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
+  Item.new("Aged Brie", 1, 50), Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 50)]
 
   before(:all) do
     gildedrose = GildedRose.new(items)
@@ -47,6 +48,10 @@ describe GildedRose do
       it 'increases quality by 1' do
         expect(@result[2].quality).to eq 11
       end
+
+      it 'does not increase quality above 50' do
+        expect(@result[8].quality).to eq 50
+      end
     end
 
     context 'for backstage pass' do
@@ -64,6 +69,10 @@ describe GildedRose do
 
       it 'drops quality to 0 after the concert' do
         expect(@result[7].quality).to eq 0
+      end
+
+      it 'does not increase quality above 50' do
+        expect(@result[9].quality).to eq 50
       end
     end
   end

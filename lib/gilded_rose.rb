@@ -37,28 +37,18 @@ class GildedRose
           end
         end
       end
-      # reduce sell_in by 1 for all items except Sulfuras
-      item.sell_in = item.sell_in - 1 unless item.name == "Sulfuras, Hand of Ragnaros"
       # if passed sell by date
       if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
-              end
-            end
-          else
-            # for backstage pass, reduce quality to 0
-            item.quality = item.quality - item.quality
-          end
-        else
-          # for aged brie, increase quality by 1
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
+        if item.name == "Aged Brie" && item.quality < 50
+          item.quality += 1
+        elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+          item.quality = 0
+        elsif item.name != "Sulfuras, Hand of Ragnaros" && item.quality > 0
+          item.quality -= 1
         end
       end
+      # reduce sell_in by 1 for all items except Sulfuras
+      item.sell_in = item.sell_in - 1 unless item.name == "Sulfuras, Hand of Ragnaros"
     end
   end
 end
