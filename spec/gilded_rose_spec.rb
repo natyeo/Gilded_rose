@@ -6,7 +6,7 @@ describe GildedRose do
   Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 30),
   Item.new("beans", -2, 4), Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
   Item.new("Aged Brie", 1, 50), Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 50),
-  Item.new("Conjured", 2, 5), Item.new("Conjured", -1, 5)]
+  Item.new("Conjured Mana Cake", 2, 5), Item.new("Conjured Mana Cake", -1, 5)]
 
   before(:all) do
     gildedrose = GildedRose.new(items)

@@ -25,3 +25,8 @@ Feel free to make any changes to the UpdateQuality method and add any new code a
 Chose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) (translated by Emily Bache) in Ruby.
 
 ## How to run the program
+
+1. Install gems using 'bundle install'
+2. Check tests and coverage using 'rspec'
+3. Check formatting using 'rubocop'
+4. Run the program in IRB

@@ -18,7 +18,7 @@ class GildedRose
       when "Backstage passes to a TAFKAL80ETC concert"
         backstage_pass(item)
 
-      when "Conjured"
+      when "Conjured Mana Cake"
         item.quality -= 2 unless item.quality == 0
         item.quality -= 2 if item.sell_in < 0
 
