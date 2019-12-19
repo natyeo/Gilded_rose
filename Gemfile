@@ -2,5 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rubocop'
-gem 'simplecov'
+group :test do
+  gem 'rubocop'
+  gem 'simplecov', require: false
+end

@@ -11,25 +11,16 @@ class GildedRose
     @items.each do |item|
       next if item.name == "Sulfuras, Hand of Ragnaros"
 
-      if item.name == "Aged Brie" || item.name.include?("Backstage passes")
+      case item.name
+      when "Aged Brie"
         increase_quality_if_below_MAX(item)
-        if item.name.include?("Backstage passes")
-          if item.sell_in < 11
-            increase_quality_if_below_MAX(item)
-          end
-          if item.sell_in < 6
-            increase_quality_if_below_MAX(item)
-          end
-        end
+
+      when "Backstage passes to a TAFKAL80ETC concert"
+        backstage_pass(item)
+
       else
         item.quality -= 1 unless item.quality == 0
-      end
-      if item.sell_in < 0
-        if item.name.include?("Backstage passes")
-          item.quality = MIN_QUALITY
-        else
-          item.quality -= 1
-        end
+        item.quality -= 1 if item.sell_in < 0
       end
       item.sell_in -= 1
     end
@@ -38,6 +29,19 @@ class GildedRose
   def increase_quality_if_below_MAX(item)
     if item.quality < MAX_QUALITY
       item.quality += 1
+    end
+  end
+
+  def backstage_pass(item)
+    increase_quality_if_below_MAX(item)
+    if item.sell_in < 11
+      increase_quality_if_below_MAX(item)
+    end
+    if item.sell_in < 6
+      increase_quality_if_below_MAX(item)
+    end
+    if item.sell_in < 0
+      item.quality = MIN_QUALITY
     end
   end
 end
