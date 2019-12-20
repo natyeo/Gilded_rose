@@ -12,28 +12,26 @@ class Item
   end
 end
 
-class StandardItem < Item
+class AllItems < Item
+  def update_sellIn
+    @sell_in -= 1
+  end
+end
+
+class StandardItem < AllItems
   def update_quality
     @quality -= 1 unless @quality == 0
     @quality -= 1 if @sell_in < 0
   end
-
-  def update_sellIn
-    @sell_in -= 1
-  end
 end
 
-class AgedBrie < Item
+class AgedBrie < AllItems
   def update_quality
     @quality += 1 if @quality < 50
   end
-
-  def update_sellIn
-    @sell_in -= 1
-  end
 end
 
-class BackstagePass < Item
+class BackstagePass < AllItems
   def update_quality
     if @sell_in < 0
       @quality = 0
@@ -45,13 +43,9 @@ class BackstagePass < Item
       @quality += 1
     end
   end
-
-  def update_sellIn
-    @sell_in -= 1
-  end
 end
 
-class Sulfuras < Item
+class Sulfuras < AllItems
   def update_quality
     @quality = @quality
   end
@@ -61,13 +55,9 @@ class Sulfuras < Item
   end
 end
 
-class Conjured < Item
+class Conjured < AllItems
   def update_quality
     @quality -= 2 unless @quality == 0
     @quality -= 2 if @sell_in < 0
-  end
-
-  def update_sellIn
-    @sell_in -= 1
   end
 end
