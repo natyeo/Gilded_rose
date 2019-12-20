@@ -1,12 +1,12 @@
 require  'gilded_rose'
 
 describe GildedRose do
-  items = [Item.new("foo", 0, 1), Item.new("Sulfuras, Hand of Ragnaros", 40, 40),
-  Item.new("Aged Brie", 10, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 30),
-  Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 30),
-  Item.new("beans", -2, 4), Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
-  Item.new("Aged Brie", 1, 50), Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 50),
-  Item.new("Conjured Mana Cake", 2, 5), Item.new("Conjured Mana Cake", -1, 5)]
+  items = [StandardItem.new("foo", 0, 1), Sulfuras.new("Sulfuras, Hand of Ragnaros", 40, 40),
+  AgedBrie.new("Aged Brie", 10, 10), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 11, 30),
+  BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), BackstagePass.new("Backstage passes to a Britney concert", 5, 30),
+  StandardItem.new("beans", -2, 4), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
+  AgedBrie.new("Aged Brie", 1, 50), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 6, 50),
+  Conjured.new("Conjured Mana Cake", 2, 5), Conjured.new("Conjured Mana Cake", -1, 5)]
 
   before(:all) do
     gildedrose = GildedRose.new(items)
