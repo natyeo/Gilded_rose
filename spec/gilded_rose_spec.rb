@@ -2,11 +2,12 @@ require  'gilded_rose'
 
 describe GildedRose do
   items = [StandardItem.new("foo", 0, 1), Sulfuras.new("Sulfuras, Hand of Ragnaros", 40, 40),
-  AgedBrie.new("Aged Brie", 10, 10), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 11, 30),
-  BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 10, 30), BackstagePass.new("Backstage passes to a Britney concert", 5, 30),
+  AgedBrie.new("Aged Brie", 10, 10), BackstagePass.new("Backstage passes", 11, 30),
+  BackstagePass.new("Backstage passes", 10, 30), BackstagePass.new("Backstage passes to a Britney concert", 5, 30),
   StandardItem.new("beans", -2, 4), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", -1, 30),
   AgedBrie.new("Aged Brie", 1, 50), BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 6, 50),
-  Conjured.new("Conjured Mana Cake", 2, 5), Conjured.new("Conjured Mana Cake", -1, 5)]
+  Conjured.new("Conjured Mana Cake", 2, 5), Conjured.new("Conjured Mana Cake", -1, 5), Conjured.new("a conjured item", -2, 3),
+  Conjured.new("anything", 1, 1)]
 
   before(:all) do
     gildedrose = GildedRose.new(items)
@@ -17,10 +18,6 @@ describe GildedRose do
     context 'for all items' do
       it "does not change the name" do
         expect(@result[0].name).to eq "foo"
-      end
-
-      it 'does not decrease quality below 0' do
-        expect(@result[0].quality).to eq 0
       end
     end
 
@@ -35,6 +32,10 @@ describe GildedRose do
 
       it 'decreases quality by 2 when sell by date passed' do
         expect(@result[6].quality).to eq 2
+      end
+
+      it 'does not decrease quality below 0' do
+        expect(@result[0].quality).to eq 0
       end
     end
 
@@ -84,6 +85,14 @@ describe GildedRose do
 
       it 'decreases quality by 4 when expired' do
         expect(@result[11].quality).to eq 1
+      end
+
+      it 'does not decrease quality below 0 for an expired item' do
+        expect(@result[12].quality).to eq 0
+      end
+
+      it 'does not decrease quality below 0' do
+        expect(@result[13].quality).to eq 0
       end
     end
   end

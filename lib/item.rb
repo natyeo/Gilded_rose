@@ -57,7 +57,18 @@ end
 
 class Conjured < AllItems
   def update_quality
-    @quality -= 2 unless @quality == 0
-    @quality -= 2 if @sell_in < 0
+    if @sell_in >= 0
+      if @quality < 2
+        @quality -= @quality
+      else
+        @quality -= 2
+      end  
+    elsif @sell_in < 0
+      if @quality < 4
+        @quality -= @quality
+      else
+        @quality -= 4
+      end
+    end
   end
 end
